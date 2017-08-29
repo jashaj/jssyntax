@@ -1,8 +1,8 @@
 requirejs(['../node_modules/esprima/dist/esprima'], function (parser) {
+  'use strict';
 
-
-  var validationBtn = document.getElementById('validate');
-  var result = document.getElementById('result');
+  const validationBtn = document.getElementById('validate');
+  const result = document.getElementById('result');
 
 
   validationBtn.addEventListener('click', validateSyntax);
@@ -11,21 +11,21 @@ requirejs(['../node_modules/esprima/dist/esprima'], function (parser) {
   function validateSyntax(e) {
     e.preventDefault();
     try {
-      var scriptArea = document.getElementById('scriptContent');
-      var syntax = parser.parse(scriptArea.value);
-      var errors = syntax.errors;
+      const scriptArea = document.getElementById('scriptContent');
+      const syntax = parser.parse(scriptArea.value, {tolerant: true, loc: true});
+      const errors = syntax.errors;
       if (errors === undefined || errors.length === 0) {
         result.textContent = 'This is a valid script';
       } else {
 
-        var list = document.createElement('ol');
+        let list = document.createElement('ol');
         errors.forEach(function (err) {
-          var item = document.createElement('li');
-          item.textContent = err.index + ': ' + err.description;
+          let item = document.createElement('li');
+          item.textContent = `${err}`;
           list.appendChild(item);
         });
 
-        result.innerHTML = 'Invalid script. Number of issues: ' + errors.length;
+        result.innerHTML = `Invalid script. Number of issues: ${errors.length}`;
         result.appendChild(list);
       }
 
