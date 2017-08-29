@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Syntax check</title>
+</head>
+<body>
+<h1>Syntax check</h1>
+<form onsubmit="return -1">
+  <!-- Yeah, no CSS here -->
+  <label for="scriptContent">Script</label><br/>
+  <textarea id="scriptContent" cols="80" rows="10">
+    (function(){
+    var foo=1;
+    // what is bar?
+    return bar.value;
+    }()
+  </textarea>
+</form>
+<script src="https://unpkg.com/esprima@~4.0/dist/esprima.js"></script>
+<script>
+  var parser = esprima;
+  var scriptContent = document.getElementById('scriptContent');
+  var syntax = parser.parse(scriptContent.value);
+  console.log(JSON.stringify(syntax, null, 4));
+</script>
+</body>
+</html>
