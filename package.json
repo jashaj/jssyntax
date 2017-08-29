@@ -1,0 +1,12 @@
+{
+  "name": "jssyntax",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:jashaj/jssyntax.git",
+  "author": "Jasha Joachimsthal <jashaj@gmail.com>",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "esprima": "^4.0.0",
+    "requirejs": "^2.3.5"
+  }
+}

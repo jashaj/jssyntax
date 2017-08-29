@@ -10,19 +10,13 @@
   <!-- Yeah, no CSS here -->
   <label for="scriptContent">Script</label><br/>
   <textarea id="scriptContent" cols="80" rows="10">
-    (function(){
     var foo=1;
     // what is bar?
     return bar.value;
-    }()
   </textarea>
+  <button id="validate">Validate</button>
 </form>
-<script src="https://unpkg.com/esprima@~4.0/dist/esprima.js"></script>
-<script>
-  var parser = esprima;
-  var scriptContent = document.getElementById('scriptContent');
-  var syntax = parser.parse(scriptContent.value);
-  console.log(JSON.stringify(syntax, null, 4));
-</script>
+<div id="result" aria-live="polite"></div>
+<script data-main="scripts/main" src="node_modules/requirejs/require.js"></script>
 </body>
 </html>
