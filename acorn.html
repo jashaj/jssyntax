@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Syntax check</title>
+</head>
+<body>
+<h1>Syntax check</h1>
+<form onsubmit="return -1">
+  <!-- Yeah, no CSS here -->
+  <label for="scriptContent">Script</label><br/>
+  <textarea id="scriptContent" cols="80" rows="10">
+    var foo=1;
+    // what is bar?
+    return bar.value;
+  </textarea>
+  <button id="validate">Validate</button>
+</form>
+<div id="result" aria-live="polite"></div>
+<script data-main="scripts/acorn" src="node_modules/requirejs/require.js"></script>
+</body>
+</html>

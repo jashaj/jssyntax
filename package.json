@@ -6,6 +6,7 @@
   "author": "Jasha Joachimsthal <jashaj@gmail.com>",
   "license": "Apache-2.0",
   "dependencies": {
+    "acorn": "^5.1.2",
     "esprima": "^4.0.0",
     "requirejs": "^2.3.5"
   }
