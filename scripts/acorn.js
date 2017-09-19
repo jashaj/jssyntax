@@ -18,8 +18,13 @@ require(['../node_modules/acorn/dist/acorn'], function (acorn) {
 
     };
     try {
-      acorn.parse(scriptArea.value, options);
-      result.textContent = 'This script is valid';
+      let parse = acorn.parse(scriptArea.value, options);
+      let scriptBody = parse.body[0];
+      if (scriptBody.type === 'FunctionDeclaration' && scriptBody.id.name === 'execute') {
+        result.textContent = 'This is a valid script';
+      } else {
+        result.textContent = 'The script must be a function with the name execute';
+      }
     } catch (e) {
       console.log(e);
       result.textContent = e;

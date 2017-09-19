@@ -13,9 +13,15 @@ requirejs(['../node_modules/esprima/dist/esprima'], function (parser) {
     try {
       const scriptArea = document.getElementById('scriptContent');
       const syntax = parser.parse(scriptArea.value, {tolerant: true, loc: true});
+
       const errors = syntax.errors;
       if (errors === undefined || errors.length === 0) {
-        result.textContent = 'This is a valid script';
+        let scriptBody = syntax.body[0];
+        if (scriptBody.type === 'FunctionDeclaration' && scriptBody.id.name === 'execute') {
+          result.textContent = 'This is a valid script';
+        } else {
+          result.textContent = 'The script must be a function with the name execute';
+        }
       } else {
 
         let list = document.createElement('ol');
